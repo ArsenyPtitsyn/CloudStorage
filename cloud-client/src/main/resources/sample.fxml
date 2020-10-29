@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="bpMain" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientGUIController">
+   <top>
+      <Pane fx:id="paneTop" prefHeight="80.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <TextField fx:id="tfIPAddress" layoutX="6.0" layoutY="6.0" prefHeight="31.0" prefWidth="192.0" promptText="IPAddress" text="127.0.0.1" />
+         <TextField fx:id="tfLogin" layoutX="6.0" layoutY="43.0" prefHeight="31.0" prefWidth="192.0" promptText="Login" text="Senya" />
+         <TextField fx:id="tfPort" layoutX="204.0" layoutY="6.0" prefHeight="31.0" prefWidth="192.0" promptText="port" text="8189" />
+         <PasswordField fx:id="tfPassword" layoutX="204.0" layoutY="43.0" prefHeight="31.0" prefWidth="192.0" promptText="password" text="1234" />
+         <Button fx:id="btnLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="402.0" layoutY="43.0" mnemonicParsing="false" onAction="#connect" prefHeight="31.0" prefWidth="192.0" text="Login" textAlignment="CENTER" />
+         <Button fx:id="btnRegistration" alignment="CENTER" contentDisplay="CENTER" layoutX="402.0" layoutY="6.0" mnemonicParsing="false" onAction="#regisration" prefHeight="31.0" prefWidth="192.0" text="Registration" textAlignment="CENTER" />
+      </Pane>
+   </top>
+   <bottom>
+      <Pane fx:id="paneBottom" prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <Button fx:id="btnRename" alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="8.0" mnemonicParsing="false" onAction="#rename" prefHeight="44.0" prefWidth="150.0" text="Rename" textAlignment="CENTER" />
+         <Button fx:id="btnCreateDir" alignment="CENTER" contentDisplay="CENTER" layoutX="166.0" layoutY="8.0" mnemonicParsing="false" onAction="#createDirectory" prefHeight="44.0" prefWidth="150.0" text="Create directory" textAlignment="CENTER" />
+         <Button fx:id="btnDelete" alignment="CENTER" contentDisplay="CENTER" layoutX="324.0" layoutY="8.0" mnemonicParsing="false" onAction="#delete" prefHeight="44.0" prefWidth="150.0" text="Delete" textAlignment="CENTER" />
+         <CheckBox fx:id="cbAlwaysOnTop" contentDisplay="CENTER" layoutX="487.0" layoutY="8.0" mnemonicParsing="false" onAction="#alwaysOnTopMethod" prefHeight="44.0" prefWidth="100.0" text="Always on top" textAlignment="CENTER" />
+      </Pane>
+   </bottom>
+   <center>
+      <Pane fx:id="paneCenter" prefHeight="460.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <ScrollPane layoutX="10.0" layoutY="20.0" prefHeight="340.0" prefWidth="270.0">
+            <ListView fx:id="lvClientFiles" prefHeight="340.0" prefWidth="270.0" />
+         </ScrollPane>
+         <ScrollPane layoutX="320.0" layoutY="20.0" prefHeight="340.0" prefWidth="270.0">
+            <ListView fx:id="lvServerFiles" prefHeight="340.0" prefWidth="270.0" />
+         </ScrollPane>
+         <Button fx:id="btnUpload" alignment="CENTER" contentDisplay="CENTER" layoutX="282.0" layoutY="41.0" mnemonicParsing="false" onAction="#upload" prefHeight="36.0" prefWidth="36.0" text="&gt;" textAlignment="CENTER">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font>
+         </Button>
+         <Button fx:id="btnDownload" alignment="CENTER" contentDisplay="CENTER" layoutX="282.0" layoutY="90.0" mnemonicParsing="false" onAction="#download" prefHeight="36.0" prefWidth="36.0" text="&lt;" textAlignment="CENTER">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font>
+         </Button>
+         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="105.0" layoutY="1.0" prefHeight="18.0" prefWidth="70.0" text="Client" textAlignment="CENTER" />
+         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="420.0" layoutY="1.0" prefHeight="18.0" prefWidth="70.0" text="Server" textAlignment="CENTER" />
+         <TextArea fx:id="log" layoutX="10.0" layoutY="370.0" prefHeight="80.0" prefWidth="580.0" promptText="log" wrapText="true" />
+      </Pane>
+   </center>
+</BorderPane>
