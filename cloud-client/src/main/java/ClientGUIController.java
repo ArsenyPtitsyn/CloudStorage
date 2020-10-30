@@ -1,9 +1,15 @@
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import ru.gb.j5.network.SocketThread;
+import ru.gb.j5.network.SocketThreadListener;
 
-public class ClientGUIController {
+import java.io.IOException;
+import java.net.Socket;
+
+public class ClientGUIController implements SocketThreadListener, Thread.UncaughtExceptionHandler {
 
     public BorderPane bpMain;
 
@@ -28,10 +34,50 @@ public class ClientGUIController {
     public Button btnDownload;
     public TextArea log;
 
-    public void connect(ActionEvent actionEvent) {
+    SocketThread socketThread;
+
+    private void putLog(String msg) {
+        if ("".equals(msg)) return;
+        Platform.runLater(() -> {
+            log.appendText(msg + "\n");
+            log.positionCaret(log.getLength());
+        });
     }
 
-    public void regisration(ActionEvent actionEvent) {
+    @Override
+    public void uncaughtException(Thread t, Throwable e) {
+        e.printStackTrace();
+        showException(t, e);
+        System.exit(1);
+    }
+
+    private void showException(Thread t, Throwable e) {
+        String msg;
+        StackTraceElement[] ste = e.getStackTrace();
+        if (ste.length == 0)
+            msg = "Empty Stacktrace";
+        else {
+            msg = String.format("Exception in \"%s\" %s: %s\n\tat %s",
+                    t.getName(), e.getClass().getCanonicalName(), e.getMessage(), ste[0]);
+        }
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Exception");
+            alert.setContentText(msg);
+            alert.showAndWait();
+        });
+    }
+
+    public void connect() {
+        try {
+            Socket socket = new Socket(tfIPAddress.getText(), Integer.parseInt(tfPort.getText()));
+            socketThread = new SocketThread(this, "Client", socket);
+        } catch (IOException e) {
+            showException(Thread.currentThread(), e);
+        }
+    }
+
+    public void registration(ActionEvent actionEvent) {
     }
 
     public void rename(ActionEvent actionEvent) {
@@ -50,5 +96,34 @@ public class ClientGUIController {
     }
 
     public void download(ActionEvent actionEvent) {
+    }
+
+    /**
+     * Socket Thread Listener Methods.
+     * */
+
+    @Override
+    public void onSocketStart(SocketThread thread, Socket socket) {
+        putLog("Start");
+    }
+
+    @Override
+    public void onSocketReady(SocketThread thread, Socket socket) {
+        putLog("Ready");
+    }
+
+    @Override
+    public void onReceiveBytes(SocketThread thread, Socket socket, int i) {
+        // Something informative for client.
+    }
+
+    @Override
+    public void onSocketException(SocketThread thread, Throwable throwable) {
+        showException(thread, throwable);
+    }
+
+    @Override
+    public void onSocketStop(SocketThread thread) {
+        putLog("Stop");
     }
 }

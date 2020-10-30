@@ -12,7 +12,7 @@
          <TextField fx:id="tfPort" layoutX="204.0" layoutY="6.0" prefHeight="31.0" prefWidth="192.0" promptText="port" text="8189" />
          <PasswordField fx:id="tfPassword" layoutX="204.0" layoutY="43.0" prefHeight="31.0" prefWidth="192.0" promptText="password" text="1234" />
          <Button fx:id="btnLogin" alignment="CENTER" contentDisplay="CENTER" layoutX="402.0" layoutY="43.0" mnemonicParsing="false" onAction="#connect" prefHeight="31.0" prefWidth="192.0" text="Login" textAlignment="CENTER" />
-         <Button fx:id="btnRegistration" alignment="CENTER" contentDisplay="CENTER" layoutX="402.0" layoutY="6.0" mnemonicParsing="false" onAction="#regisration" prefHeight="31.0" prefWidth="192.0" text="Registration" textAlignment="CENTER" />
+         <Button fx:id="btnRegistration" alignment="CENTER" contentDisplay="CENTER" layoutX="402.0" layoutY="6.0" mnemonicParsing="false" onAction="#registration" prefHeight="31.0" prefWidth="192.0" text="Registration" textAlignment="CENTER" />
       </Pane>
    </top>
    <bottom>
