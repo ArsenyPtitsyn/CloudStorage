@@ -49,6 +49,7 @@ public class CloudServer implements ServerSocketThreadListener, SocketThreadList
     @Override
     public void onServerStart(ServerSocketThread thread) {
         putLog("Server started");
+        SqlClient.connect();
     }
 
     @Override
@@ -76,6 +77,7 @@ public class CloudServer implements ServerSocketThreadListener, SocketThreadList
     @Override
     public void onServerStop(ServerSocketThread thread) {
         putLog("Server stopped");
+        SqlClient.disconnect();
     }
 
     /**
