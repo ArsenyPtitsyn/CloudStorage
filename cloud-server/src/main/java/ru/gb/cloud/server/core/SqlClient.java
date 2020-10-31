@@ -32,7 +32,7 @@ public class SqlClient {
                     String.format("select fld_nickname from tbl_users where fld_login = '%s' and fld_password = '%s'",
                             login, password));
             if (rs.next()) {
-                return rs.getString("nickname");
+                return rs.getString("fld_nickname");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -62,7 +62,11 @@ CREATE TABLE `tbl_users` (
   `fld_login` varchar(255) NOT NULL,
   `fld_password` varchar(255) NOT NULL,
   `fld_nickname` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_users`)
+  PRIMARY KEY (`id_users`),
+  UNIQUE KEY `fld_phone_UNIQUE` (`fld_phone`),
+  UNIQUE KEY `fld_email_UNIQUE` (`fld_email`),
+  UNIQUE KEY `fld_login_UNIQUE` (`fld_login`),
+  UNIQUE KEY `fld_nickname_UNIQUE` (`fld_nickname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -84,4 +88,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-31 21:39:06
+-- Dump completed on 2020-10-31 21:54:16
